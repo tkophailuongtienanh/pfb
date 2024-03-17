@@ -53,6 +53,7 @@ function setScoreText(msg) {
 }
 function onCheckBtnClick() {
   const guess = guessInput.value;
+guessInput.value='';
   if (!checkValid(guess)) {
     errorMessage.textContent =
       "*Vui lòng nhập số hợp lệ có " + numberDigits + " chữ số";
@@ -128,7 +129,7 @@ function onAgainBtnClick() {
   document.querySelector(".message").textContent = "Start guessing...";
   document.querySelector("body").style.backgroundColor = "#222";
   document.querySelector(".number").textContent = "?";
-  document.querySelector(".guess").disabled = false;
+  checkBtn.disabled = false;
 }
 function init() {
   bestScore.textContent = highScore;
