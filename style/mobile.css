@@ -10,8 +10,9 @@
   .footer{
     position: fixed;
     right: 0;
-    bottom: .7755rem;
+    bottom: 0;
     left: 0;
+    padding-bottom: .75rem;
     z-index: 1030;
   }
 }

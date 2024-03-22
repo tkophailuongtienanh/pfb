@@ -10,6 +10,7 @@ const howToPlayBtn = document.getElementById("howToPlay");
 const bestScore = document.getElementById("best");
 const messageTexts = document.querySelectorAll(".message");
 const scoreTexts = document.querySelectorAll(".score");
+const noteTexts = document.querySelector(".note");
 const errorMessage = document.getElementById("errorMessage");
 const guessInput = document.getElementById("guess");
 const checkBtn = document.getElementById("check");
@@ -17,13 +18,15 @@ const dataTable = document.getElementById("history");
 init();
 function newGame() {
   getRandomNumber();
-  score = 200;
+  score = 100;
   setMessageText("Bắt đầu chơi");
   setScoreText("Số lần đoán: " + score / 10);
-  while (dataTable.childElementCount>1) {
+  while (dataTable.childElementCount > 1) {
     dataTable.removeChild(dataTable.lastChild);
   }
   dataTable.innerHTML += "<tr><td>&nbsp;</td><td>&nbsp;</td></tr>";
+  checkBtn.disabled = false;
+  noteTexts.classList.add("d-none");
 }
 function getRandomNumber() {
   const arr = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
@@ -53,13 +56,17 @@ function setScoreText(msg) {
 }
 function onCheckBtnClick() {
   const guess = guessInput.value;
-guessInput.value='';
+  guessInput.value = "";
   if (!checkValid(guess)) {
     errorMessage.textContent =
-      "*Vui lòng nhập số hợp lệ có " + numberDigits + " chữ số";
+      "*Vui lòng nhập số hợp lệ có " + numberDigits + " chữ số khác nhau";
     return;
   }
   errorMessage.textContent = "";
+  gamestart();
+  showCheckResult(guess);
+}
+function showCheckResult(guess){
   var result = "";
   if (secretNumber === guess) {
     result = "Chuẩn òi!!!";
@@ -88,6 +95,10 @@ guessInput.value='';
     gameOver();
   }
 }
+function gamestart(){
+  setMessageText("");
+  noteTexts.classList.remove("d-none");
+}
 function checkValid(str) {
   if (str == "") return false;
   if (str.charAt(0) == "0") return false;
@@ -107,7 +118,7 @@ function addHistory(num, str) {
 }
 function gameFinish() {
   setMessageText("Win!!!");
-  setScoreText("Đỉnh đấy :v")
+  setScoreText("Đỉnh đấy :v");
   checkBtn.disabled = true;
   // document.querySelector("body").style.backgroundColor = "#60b347";
   // document.querySelector(".number").textContent = secretNumber;
@@ -118,18 +129,8 @@ function gameFinish() {
 }
 function gameOver() {
   setMessageText("GameOver!!!");
-  setScoreText("Gà vãi =))))))))")
+  setScoreText("Gà vãi =))))))))");
   checkBtn.disabled = true;
-}
-function onAgainBtnClick() {
-  secretNumber = Math.trunc(Math.random() * 20) + 1;
-  score = 10;
-  document.querySelector(".guess").value = "";
-  document.querySelector(".score").textContent = score;
-  document.querySelector(".message").textContent = "Start guessing...";
-  document.querySelector("body").style.backgroundColor = "#222";
-  document.querySelector(".number").textContent = "?";
-  checkBtn.disabled = false;
 }
 function init() {
   bestScore.textContent = highScore;
@@ -137,5 +138,3 @@ function init() {
   checkBtn.addEventListener("click", onCheckBtnClick);
   retryBtn.addEventListener("click", newGame);
 }
-document.querySelector(".check").addEventListener("click", onCheckBtnClick);
-document.querySelector(".again").addEventListener("click", onAgainBtnClick);

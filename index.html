@@ -36,8 +36,9 @@
         <!-- <p class="fw-bolder fs-3 mt-5 text-center number">?</p> -->
         <h1 class="message fw-bolder text-center mt-4 d-md-none text-uppercase"> Bắt đầu chơi </h1>
         <h3 class="score fw-bolder text-center mt-4 d-md-none">Điểm: 120</h3>
+        <p class="note text-danger mt-4 d-md-none d-none" style="font-size: .75rem;">
+          * Pico: 1 số đúng, sai vị trí; Fermi: 1 số đúng, đúng vị trí; Bagel: không có số nào đúng.</p>
         <div class="separate mt-4"></div>
-
       </div>
       <div class="checker col-md-5 col-12 bg-light">
         <div class="footer container bg-light">
@@ -50,6 +51,14 @@
               <input id="guess" type="number" class="guess col border-square border-dark form-control"
                 placeholder="Nhập..." />
               <button id="check" class="btn border-square btn-outline-dark col-auto">Kiểm tra</button>
+            </div>
+            <div class="row d-none d-md-block mt-4">
+              Giới thiệu: <br>
+              &nbsp; Pico Fermi Bagel là 1 game đoán số. Dựa vào các gọi ý được đưa ra bạn sẽ phải đoán đúng số mà đề bài yêu cầu.<br>
+              &nbsp; Các gợi ý có thể là: <br>
+              Pico  - 1 chữ số đúng nhưng sai vị trí.<br>
+              Fermi - 1 chữ số đúng và đúng vị trí.<br>
+              Bagel - Không có chữ số nào đúng cả.<br>
             </div>
           </div>
         </div>
